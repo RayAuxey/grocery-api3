@@ -22,13 +22,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const url = "/groceries/api/"
-app.get(url+"/groceries/api/", GroceryShopController.index);
-app.post(url+"/newShop", GroceryShopController.create);
-app.get(url+"/:id", GroceryShopController.show);
-app.put(url+"/addProduct/:id", GroceryShopController.addProduct);
-app.put(url+"/addReview/:id", GroceryShopController.addReview);
-app.get(url+"/products/:id", GroceryShopController.showProducts);
-app.get(url+"/reviews/:id", GroceryShopController.showReviews);
+app.get(url, GroceryShopController.index);
+app.post(url+"newShop", GroceryShopController.create);
+app.get(url+":id", GroceryShopController.show);
+app.put(url+"addProduct/:id", GroceryShopController.addProduct);
+app.put(url+"addReview/:id", GroceryShopController.addReview);
+app.get(url+"products/:id", GroceryShopController.showProducts);
+app.get(url+"reviews/:id", GroceryShopController.showReviews);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
