@@ -28,6 +28,7 @@ const GroceryShopSchema = new mongoose.Schema({
       type: Number
     }
   },
+  imageUrl: String,
   products: [Product],
   reviews: [Review]
 });

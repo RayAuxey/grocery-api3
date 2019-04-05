@@ -3,7 +3,7 @@ const GroceryShop = require("../models/grocery_shop_model");
 class GroceryShopController {
   static index(req, res) {
     GroceryShop.find({})
-      .select("name _id description location")
+      .select("-reviews -products")
       .exec()
       .then(docs => res.status(200).json(docs))
       .catch(err => console.log(err));
@@ -16,7 +16,8 @@ class GroceryShopController {
       location: {
         latitude: req.body.lat,
         longitude: req.body.long
-      }
+      },
+      imageUrl: req.body.image
     });
     newShop
       .save()
@@ -31,7 +32,7 @@ class GroceryShopController {
   static show(req, res) {
     const id = req.params.id;
     GroceryShop.findById(id)
-      .select("name _id description location")
+      .select("-reviews -products")
       .exec()
       .then(doc => {
         if (doc) {
