@@ -13,8 +13,7 @@ const Review = new mongoose.Schema({
 
 const GroceryShopSchema = new mongoose.Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
+    type: mongoose.Schema.Types.ObjectId
   },
   name: {
     type: String,
