@@ -6,7 +6,8 @@ const express = require("express"),
   bodyParser = require("body-parser");
 
 mongoose.connect("mongodb://localhost:27017/groceries", {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 });
 
 const app = express();

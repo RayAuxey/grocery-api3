@@ -24,7 +24,7 @@ class UserController {
 		  		if (doc.password === req.body.password) {
 		  			res.status(200).json(doc)
 		  		} else {
-		  			res.ststus(403).json({
+		  			res.status(403).json({
 		  				Error: "Password not true"
 		  			})
 		  		}

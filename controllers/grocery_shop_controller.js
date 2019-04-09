@@ -11,6 +11,7 @@ class GroceryShopController {
 
   static create(req, res) {
     const newShop = new GroceryShop({
+      userId: req.body.userId,
       name: req.body.name,
       description: req.body.desc,
       location: {
