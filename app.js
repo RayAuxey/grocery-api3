@@ -15,6 +15,9 @@ const PORT = process.env.PORT || 6886;
 // Controller Import
 const GroceryShopController = require("./controllers/grocery_shop_controller");
 
+// Router import
+const authRouter = require("./routes/auth")
+
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -29,6 +32,8 @@ app.put(url+"addProduct/:id", GroceryShopController.addProduct);
 app.put(url+"addReview/:id", GroceryShopController.addReview);
 app.get(url+"products/:id", GroceryShopController.showProducts);
 app.get(url+"reviews/:id", GroceryShopController.showReviews);
+
+app.use(url+ "auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
