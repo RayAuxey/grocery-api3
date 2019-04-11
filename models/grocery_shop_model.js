@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
 
-const Product = new mongoose.Schema({
-  name: String,
-  price: Number
-});
-
 const Review = new mongoose.Schema({
   name: String,
   content: String,
@@ -32,7 +27,12 @@ const GroceryShopSchema = new mongoose.Schema({
     }
   },
   imageUrl: String,
-  products: [Product],
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product"
+    }
+  ],
   reviews: [Review]
 });
 

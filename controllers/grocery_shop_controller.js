@@ -1,4 +1,5 @@
 const GroceryShop = require("../models/grocery_shop_model");
+const Product = require("../models/product_model");
 
 class GroceryShopController {
   static index(req, res) {
@@ -57,17 +58,19 @@ class GroceryShopController {
       .exec()
       .then(doc => {
         if (doc) {
-          const newProduct = {
+          const newProduct = new Product({
             name: req.body.name,
             price: req.body.price
-          };
-          doc.products.push(newProduct);
-          doc.save().then(doc =>
-            res.status(200).json({
-              product: newProduct,
-              addedTo: id
-            })
-          );
+          });
+          newProduct.save().then(product => {
+            doc.products.push(product._id);
+            doc.save().then(doc =>
+              res.status(200).json({
+                product: newProduct,
+                addedTo: id
+              })
+            );
+          });
         } else
           res.status(404).json({
             error: "No such document"
@@ -126,6 +129,7 @@ class GroceryShopController {
   static showProducts(req, res) {
     const id = req.params.id;
     GroceryShop.findById(id)
+      .populate("products")
       .select("products")
       .exec()
       .then(doc => res.status(200).json(doc))
